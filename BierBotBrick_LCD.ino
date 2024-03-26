@@ -1,4 +1,6 @@
 //OTA (Laden über WIFi) Passwort: admin
+// https://brewbricks.com/api/iot/v1?apikey=[API-Key]&type=display&brand=oss&version=0.1.1&chipid=foo123&d_object_information_0=4x20
+
 
 #include <LiquidCrystal_I2C.h>
 #include <ArduinoJson.h>
@@ -8,22 +10,25 @@
 #include <ESP8266mDNS.h>
 #include <WiFiUdp.h>
 
+const int LED_PIN = 14;  //korrekte Bezeichnung
+const int BEEP_PIN = 2;  //korrekte Bezeichnung
+//#define BEEP_PIN D5
+//#define LED_PIN D4
 
-#define LED_PIN D4
-#define BEEP_PIN D5
+
 #define BTN1_PIN 0
 #define BTN2_PIN 0
 #define CYCLE_SLEEP 100 
 
 //CFG
-#define URL "europe-west1-bierbot-cloud.cloudfunctions.net"
-#define URL_PATH "/iot_staging"
+#define URL "brewbricks.com"
+#define URL_PATH "/api/iot/v1"
 #define HTTP_PORT 443
 #define APIKEY  "[BRICK API KEY]"
 #define CHIPID  "foo123"
 #define TYPE  "display"
 #define BRAND "oss"
-#define VERSION  "0.0.1"
+#define VERSION  "0.0.2"
 #define HTTP_REQU_LEN 200
 #define HOSTNAME "BierTimer"
 #define ALARM1 120 // 1st Alarm before next step
